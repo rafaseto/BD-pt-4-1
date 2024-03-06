@@ -15,14 +15,16 @@ print('Criou a conexao')
 cursor = conexao.cursor()
 
 # Comando de teste SQL
-SQL_select_endereco = "SELECT * FROM mydb.endereco"
+SQL_insert_into = "INSERT INTO mydb.departamento (id_departamento, nome) VALUES (%s, %s)"
 
 # Executando o comando de teste
-cursor.execute(SQL_select_endereco)
+cursor.execute(SQL_insert_into, (2, "DMA"))
 
-# Imprime a consulta SQL
-print(SQL_select_endereco)
+# Confirma a transação
+conexao.commit()
+
+print("Dados inseridos com sucesso!")   
 
 # Imprime registros retornados pela consulta SQL
-for record in cursor:
-    print(record)
+# for record in cursor:
+#    print(record)
