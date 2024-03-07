@@ -1,3 +1,5 @@
+# link repositório github: <https://github.com/rafaseto/BD-pt-4-1.git>
+
 import psycopg2
 
 host = 'database-1.clidhukfcnn3.us-east-1.rds.amazonaws.com'
@@ -8,23 +10,15 @@ usuario_01 = "rafaelseto"
 
 senha_01 = 'professor'
 
+# ====================
+# Estabelecendo a conexão
 conexao = psycopg2.connect(host=host, dbname=bd_nome, user=usuario_01, password=senha_01)
 print('Criou a conexao')
 
 # Objeto do tipo cursor, utilizado para executar comandos SQL
 cursor = conexao.cursor()
 
-# Comando de teste SQL
-#SQL_insert_into = "INSERT INTO mydb.departamento (id_departamento, nome) VALUES (%s, %s)"
-
-# Executando o comando de teste
-#cursor.execute(SQL_insert_into, (2, "DMA"))
-
-# Confirma a transação
-#conexao.commit()
-
-#print("Dados inseridos com sucesso!")   
-
+# ====================
 # MÉTODO PARA CONSULTAR TABELA 'departamento'
 def consulta_departamento():
     # Instrução SELECT
@@ -40,6 +34,7 @@ def consulta_departamento():
     for linha in cursor:
         print(linha)
 
+# ====================
 # MÉTODO PARA INSERIR UMA LINHA NA TABELA 'departamento'
 def insere_departamento(id, nome):
     # Instrução INSERT INTO
@@ -51,6 +46,14 @@ def insere_departamento(id, nome):
     # Confirmando a transação
     conexao.commit()
 
-insere_departamento(3, "DFI")
-insere_departamento(4, "DEAM")
+# ====================
+# TESTANDO OS MÉTODOS
+
+# Inserindo o departamento "Cardiologia"
+insere_departamento(9, "Cardiologia")
+
+# Inserindo o departamento "Neurologia"
+insere_departamento(10, "Neurologia")
+
+# Consulta tabela "departamento"
 consulta_departamento()
