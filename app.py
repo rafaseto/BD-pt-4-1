@@ -40,4 +40,17 @@ def consulta_departamento():
     for linha in cursor:
         print(linha)
 
+# MÉTODO PARA INSERIR UMA LINHA NA TABELA 'departamento'
+def insere_departamento(id, nome):
+    # Instrução INSERT INTO
+    SQL_insert = "INSERT INTO mydb.departamento VALUES (%s, %s)"
+
+    # Executando a instrução INSERT INTO
+    cursor.execute(SQL_insert, (id, nome))
+
+    # Confirmando a transação
+    conexao.commit()
+
+insere_departamento(3, "DFI")
+insere_departamento(4, "DEAM")
 consulta_departamento()
